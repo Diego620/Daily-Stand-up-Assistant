@@ -1,1 +1,0 @@
-# Daily Stand-up Assistant
