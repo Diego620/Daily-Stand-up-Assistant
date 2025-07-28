@@ -1,0 +1,11 @@
+# Ignore Visual Studio files
+.vs/
+bin/
+obj/
+*.user
+*.suo
+
+# Ignore server-specific build folders
+/server/bin/
+/server/obj/
+/server/.vs/
