@@ -1,0 +1,22 @@
+.report-output {
+ /*margin-top: 10px;*/
+  background: white;
+  padding: 10px;
+  border-radius: 10px;
+  flex: 1;
+  max-width: 500px;
+}
+
+.placeholder {
+  color: #888;
+}
+.output-box {
+  border: 1px dashed #ccc;      /* light gray border */
+  padding: 16px;               /* space inside the box */
+  border-radius: 6px;          /* rounded corners */
+  background-color: #f9f9f9;   /* subtle light background */
+  min-height: 0px;           /* ensure box has some height */
+  white-space: pre-wrap;       /* preserve formatting inside <pre> */
+  font-family: monospace;      /* for preformatted text */
+  overflow-y: auto;            /* scrollbar if content overflows */
+}

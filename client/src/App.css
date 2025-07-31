@@ -7,3 +7,63 @@ body {
     justify-content: center;
     align-content: center;
 }
+
+.app-container {
+  font-family: Arial, sans-serif;
+  background-color: #f0f4fc;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.main-layout {
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.app-wrapper {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.app-header h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.app-header p {
+  font-size: 1.1rem;
+  color: #555;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.app-container {
+  display: flex;
+  gap: 25px;
+  align-items: flex-start;
+  padding: 20px;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.app-container > * {
+  flex: 1;              /* makes both children grow equally */
+  min-width: 300px;
+min-height: 500px;
+}
+
+
+
