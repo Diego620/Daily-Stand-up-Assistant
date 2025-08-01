@@ -1,11 +1,16 @@
-.report-output {
- /*margin-top: 10px;*/
-  background: white;
-  padding: 10px;
-  border-radius: 10px;
-  flex: 1;
-  max-width: 500px;
+﻿.report-output {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    box-sizing: border-box;
+    /* ❌ remove min-height */
 }
+
+
+
 
 .placeholder {
   color: #888;

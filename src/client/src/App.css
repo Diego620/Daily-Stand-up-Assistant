@@ -9,10 +9,9 @@ body {
 }
 
 .app-container {
-  font-family: Arial, sans-serif;
-  background-color: #f0f4fc;
-  min-height: 100vh;
-  padding: 2rem;
+    display: flex;
+    gap: 20px;
+    align-items: stretch; /* forces equal height */
 }
 
 .title {
@@ -51,18 +50,19 @@ body {
 }
 
 .app-container {
-  display: flex;
-  gap: 25px;
-  align-items: flex-start;
-  padding: 20px;
-  margin-left: 10%;
-  margin-right: 10%;
+    display: flex;
+    gap: 25px;
+    align-items: stretch; 
+    padding: 20px;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
 .app-container > * {
-  flex: 1;              /* makes both children grow equally */
-  min-width: 300px;
-min-height: 500px;
+    flex: 1; 
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
 }
 
 
