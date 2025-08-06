@@ -32,10 +32,10 @@
     transition: border 0.2s ease, box-shadow 0.2s ease;
 }
 
-    .template-dropdown:focus {
-        border-color: #7b86f0;
-        box-shadow: 0 0 4px rgba(123, 134, 240, 0.4);
-    }
+.template-dropdown:focus {
+    border-color: #7b86f0;
+    box-shadow: 0 0 4px rgba(123, 134, 240, 0.4);
+}
 
 
 .form-label {
@@ -137,4 +137,44 @@
      font-weight: 600;
      color: #0041a8; /* darker blue for "How it works:" */
  }
+
+
+/* --- Add these styles for the loading state --- */
+
+/* Style the button when it's in a loading/disabled state */
+.generate-button:disabled {
+    background-color: #868e96; /* A muted gray color from the image */
+    color: #e9ecef;
+    cursor: not-allowed;
+    opacity: 1; /* Override any default opacity for a solid look */
+}
+
+/* Make sure the button content is centered */
+.generate-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px; /* Space between loader/icon and text */
+}
+
+/* The CSS for the spinning loader animation */
+.loader {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #fff;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
 

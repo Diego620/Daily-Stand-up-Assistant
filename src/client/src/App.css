@@ -65,5 +65,34 @@ body {
     flex-direction: column;
 }
 
+/* --- Styles for the new feature tags in the header --- */
+
+.feature-tags {
+    display: flex;
+    justify-content: center;
+    gap: 12px; /* This creates space between the tags */
+    margin-top: 20px; /* This adds space below the paragraph */
+    flex-wrap: wrap; /* Allows tags to wrap on smaller screens */
+}
+
+.feature-tag {
+    display: inline-flex; /* Use flex to align icon and text */
+    align-items: center;  /* Vertically center the icon and text */
+    gap: 8px;             /* Space between the icon and the text */
+    background-color: #ffffff; /* White background */
+    color: #374151;      /* A dark gray for the text */
+    padding: 6px 14px;
+    border-radius: 16px; /* Pill-shaped tags */
+    font-size: 0.875rem; /* 14px */
+    font-weight: 500;
+    border: 1px solid #e5e7eb; /* Subtle light gray border */
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* A very light shadow */
+}
+
+/* Optional: Style the icons inside the tags */
+.feature-tag svg {
+    color: #6b7280; /* A slightly lighter gray for the icon */
+}
+
 
 

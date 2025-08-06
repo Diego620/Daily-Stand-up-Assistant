@@ -6,22 +6,129 @@
     padding: 20px;
     border-radius: 20px;
     box-sizing: border-box;
-    /* ❌ remove min-height */
 }
 
+.output-box {
+    border: 1px dashed #ccc;
+    padding: 16px;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+    white-space: pre-wrap;
+    font-family: monospace;
+    overflow-y: auto;
+    flex-grow: 1; /* Allow box to grow and fill space */
+}
 
+.output-textarea {
+    width: 100%;
+    min-height: 150px;
+    font-family: monospace;
+    font-size: 14px;
+    padding: 12px;
+    border: 1px solid #ccc; /* Solid border for editing looks better */
+    border-radius: 6px;
+    background-color: #ffffff;
+    resize: vertical;
+    box-sizing: border-box;
+    flex-grow: 1; /* Allow textarea to grow */
+}
 
+.placeholder-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 120px;
+}
 
 .placeholder {
-  color: #888;
+    color: #888;
 }
-.output-box {
-  border: 1px dashed #ccc;      /* light gray border */
-  padding: 16px;               /* space inside the box */
-  border-radius: 6px;          /* rounded corners */
-  background-color: #f9f9f9;   /* subtle light background */
-  min-height: 0px;           /* ensure box has some height */
-  white-space: pre-wrap;       /* preserve formatting inside <pre> */
-  font-family: monospace;      /* for preformatted text */
-  overflow-y: auto;            /* scrollbar if content overflows */
+
+.icon-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+    justify-content: flex-end; /* Aligns buttons to the right */
+    align-items: center;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.icon-btn:hover {
+    transform: scale(1.15);
+    color: #007bff;
+}
+
+.save-btn, .cancel-btn {
+    height: 35px;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0 15px;
+}
+
+.save-btn {
+    background-color: black;
+    color: white;
+    border: none;
+}
+
+.cancel-btn {
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+}
+
+.save-btn:hover {
+    background-color: #333;
+}
+
+.cancel-btn:hover {
+    background-color: #f2f2f2;
+}
+
+.copy-confirm {
+    font-weight: bold;
+    color: #28a745; /* Green color for success */
+    animation: fadeOut 2s forwards;
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+
+/* --- NEW STYLES ADDED HERE --- */
+
+.report-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1rem;
+}
+
+.report-header h2 {
+    margin: 0; /* Removes default browser margin from the h2 tag */
+}
+
+.report-tag {
+    background-color: #e0e7ff; /* A light, soft blue */
+    color: #4f46e5;           /* A matching darker blue for text */
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-block;
+    vertical-align: middle; /* Aligns tag nicely with the title text */
 }
