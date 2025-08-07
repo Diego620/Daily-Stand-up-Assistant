@@ -7,41 +7,49 @@ import { FaRegClock, FaFileAlt, FaRobot } from 'react-icons/fa';
 function App() {
     const [notes, setNotes] = useState('');
     const [report, setReport] = useState('');
-    const [selectedTemplate, setSelectedTemplate] = useState('Detailed Report');
-    // --- 1. Add isLoading state ---
+    const [selectedTemplate, setSelectedTemplate] = useState('Standard Standup');
     const [isLoading, setIsLoading] = useState(false);
+    // --- 1. Add an error state ---
+    const [error, setError] = useState('');
 
-    function handleGenerate() {
+    // --- 2. Replace the simulated function with a real API call ---
+    async function handleGenerate() {
         if (!notes.trim()) {
             setReport("");
             return;
         }
 
-        // --- 2. Set loading to true when generation starts ---
         setIsLoading(true);
-        setReport(''); // Clear previous report immediately
+        setReport('');
+        setError(''); // Clear previous errors
 
-        // --- 3. Simulate network/AI processing delay ---
-        setTimeout(() => {
-            // This is where you would typically handle the API response
-            const generatedReport = `Daily Standup Report - ${new Date().toLocaleDateString()}
+        try {
+            const response = await fetch('http://localhost:5183/api/Report', { // <-- IMPORTANT: Check this port!
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    notes: notes,
+                    selectedTemplate: selectedTemplate,
+                }),
+            });
 
-Summary
+            if (!response.ok) {
+                // Handle server errors (e.g., 500 Internal Server Error)
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
 
-Yesterday I focused on general tasks, and today I'm planning to work on 1 items.
+            const generatedReport = await response.text(); // The backend returns a plain string
+            setReport(generatedReport);
 
-Yesterday's Accomplishments
-- ${notes}
-
-Today's Plan
-- Continue working on the user dashboard.
-
-Blockers
-- No blockers today.`;
-
-            setReport(generatedReport); // Set the new report
-            setIsLoading(false); // Set loading back to false
-        }, 2000); // 2-second delay for demonstration
+        } catch (e) {
+            console.error("Failed to generate report:", e);
+            setError('Failed to generate report. The server might be down or an error occurred.');
+            setReport(''); // Clear any partial report
+        } finally {
+            setIsLoading(false); // Ensure loading is turned off in all cases
+        }
     }
 
     return (
@@ -63,9 +71,10 @@ Blockers
                     handleGenerate={handleGenerate}
                     selectedTemplate={selectedTemplate}
                     setSelectedTemplate={setSelectedTemplate}
-                    // --- 4. Pass isLoading state to the form ---
                     isLoading={isLoading}
                 />
+                {/* --- 3. Display the error message if it exists --- */}
+                {error && <div className="error-message">{error}</div>}
                 <ReportOutput report={report} selectedTemplate={selectedTemplate} />
             </div>
         </div>

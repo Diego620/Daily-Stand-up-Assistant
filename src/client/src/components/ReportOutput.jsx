@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import './ReportOutput.css';
 import { jsPDF } from 'jspdf';
+// --- 1. Import ReactMarkdown ---
+import ReactMarkdown from 'react-markdown';
 import { FaDownload, FaEdit, FaShareAlt, FaRegCopy } from 'react-icons/fa';
 
 function downloadPDF(report) {
     const doc = new jsPDF();
+    // Note: jsPDF doesn't render markdown well. This will still download the raw text.
+    // For styled PDFs, a more complex library like html2canvas would be needed.
     doc.text(report, 10, 10);
     doc.save('daily-standup-report.pdf');
 }
 
-// 1. Receive selectedTemplate from props
 const ReportOutput = ({ report, selectedTemplate }) => {
     const [editableReport, setEditableReport] = useState('');
     const [isEditing, setIsEditing] = useState(false);
@@ -17,7 +20,7 @@ const ReportOutput = ({ report, selectedTemplate }) => {
 
     useEffect(() => {
         setEditableReport(report);
-        setIsEditing(false); // Exit editing mode when a new report is generated
+        setIsEditing(false);
     }, [report]);
 
     const handleEmailShare = () => {
@@ -39,13 +42,11 @@ const ReportOutput = ({ report, selectedTemplate }) => {
 
     return (
         <div className="report-output">
-            {/* 2. Header now contains title and the conditionally rendered tag */}
             <div className="report-header">
                 <h2>Generated Report</h2>
                 {report && <span className="report-tag">{selectedTemplate}</span>}
             </div>
 
-            {/* Display placeholder only if there's no report */}
             {!report ? (
                 <div className="output-box placeholder-container">
                     <p className="placeholder">No report generated yet</p>
@@ -58,21 +59,20 @@ const ReportOutput = ({ report, selectedTemplate }) => {
                         onChange={(e) => setEditableReport(e.target.value)}
                     />
                 ) : (
-                    <div className="output-box">
-                        <pre>{editableReport}</pre>
+                    // --- 2. This is the key change ---
+                    // Replace the <pre> tag with the ReactMarkdown component
+                    // This will render the markdown correctly and fix the overflow.
+                    <div className="output-box markdown-content">
+                        <ReactMarkdown>{editableReport}</ReactMarkdown>
                     </div>
                 )
             )}
 
-            {/* Show icons and buttons only if there is a report */}
             {report && (
                 <div className="icon-buttons">
                     {isEditing ? (
                         <>
-                            <button
-                                className="save-btn"
-                                onClick={() => setIsEditing(false)}
-                            >
+                            <button className="save-btn" onClick={() => setIsEditing(false)}>
                                 Save Changes
                             </button>
                             <button

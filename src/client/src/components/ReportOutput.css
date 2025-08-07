@@ -111,24 +111,72 @@
 
 /* --- NEW STYLES ADDED HERE --- */
 
+/* Keep all your existing CSS, and add these new styles at the end */
+
+/* ... (all your previous CSS from .report-output to @keyframes fadeOut) ... */
+
 .report-header {
     display: flex;
     align-items: center;
     gap: 12px;
     margin-bottom: 1rem;
+    /* Add flex-shrink to prevent the header from shrinking */
+    flex-shrink: 0;
 }
 
 .report-header h2 {
-    margin: 0; /* Removes default browser margin from the h2 tag */
+    margin: 0;
 }
 
 .report-tag {
-    background-color: #e0e7ff; /* A light, soft blue */
-    color: #4f46e5;           /* A matching darker blue for text */
+    background-color: #e0e7ff;
+    color: #4f46e5;
     padding: 4px 12px;
     border-radius: 12px;
     font-size: 0.8rem;
     font-weight: 600;
     display: inline-block;
-    vertical-align: middle; /* Aligns tag nicely with the title text */
+    vertical-align: middle;
+}
+
+/* --- NEW STYLES FOR MARKDOWN CONTENT --- */
+.markdown-content {
+    /* These styles apply to the container of the rendered markdown */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    white-space: normal; /* Override the pre-wrap from before */
+    color: #333;
+}
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3 {
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    padding-bottom: 0.3em;
+    border-bottom: 1px solid #eaeaea;
+    color: #1a1a1a;
+}
+
+.markdown-content h1 { font-size: 1.8em; }
+.markdown-content h2 { font-size: 1.5em; }
+.markdown-content h3 { font-size: 1.25em; }
+
+.markdown-content p,
+.markdown-content li {
+    line-height: 1.6;
+    margin-bottom: 0.5em;
+}
+
+.markdown-content ul {
+    padding-left: 20px;
+}
+
+.markdown-content li > p {
+    /* If a list item contains a paragraph, remove the extra bottom margin */
+    margin-bottom: 0;
+}
+
+/* Make sure the icon buttons don't shrink */
+.icon-buttons {
+    flex-shrink: 0;
 }
