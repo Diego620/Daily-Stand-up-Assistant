@@ -1,4 +1,5 @@
 using Azure.AI.OpenAI;
+using server.services; 
 using System;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +7,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+builder.Services.AddScoped<IReportService, ReportService>();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -20,6 +24,7 @@ if (string.IsNullOrEmpty(openAiApiKey))
 
 // Register the OpenAIClient as a singleton service
 builder.Services.AddSingleton(new OpenAIClient(openAiApiKey));
+
 
 builder.Services.AddCors(options =>
 {
