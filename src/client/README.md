@@ -1,70 +1,110 @@
-# Getting Started with Create React App
+# Daily Stand-up Assistant
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack web application designed to help users generate structured and coherent daily stand-up reports using the power of AI. The user provides their notes and selects a report template, and the application leverages the OpenAI API to generate a polished report.
 
-## Available Scripts
+## 🚀 Core Features
 
-In the project directory, you can run:
+-   **AI-Powered Report Generation**: Uses the OpenAI API to transform raw notes into a professional stand-up report.
+-   **Template Selection**: Allows users to choose from different report formats (e.g., 'Standard Standup').
+-   **Clean User Interface**: A simple and intuitive UI built with React for entering notes and viewing the generated output.
+-   **Robust Backend**: A C# ASP.NET Core Web API handles the business logic and communication with the OpenAI service.
+-   **Separation of Concerns**: A clear distinction between the frontend client and the backend server.
 
-### `npm start`
+## 💻 Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+This project is built with a modern full-stack architecture:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Frontend
+-   **React**: A JavaScript library for building user interfaces.
+-   **JavaScript (ES6+)**: Including `async/await` for handling API calls.
+-   **Fetch API**: For communication with the backend.
+-   **CSS**: For custom styling.
 
-### `npm test`
+### Backend
+-   **C#**: The programming language for the server.
+-   **.NET**: The framework for building the Web API.
+-   **ASP.NET Core**: Specifically used for creating the RESTful API endpoints.
+-   **OpenAI API**: The AI service used for report generation.
+-   **Swagger**: For API documentation and testing.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## ⚙️ Getting Started
 
-### `npm run build`
+To get a local copy up and running, follow these simple steps.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Prerequisites
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+You will need the following software installed on your machine:
+-   [Node.js](https://nodejs.org/en/) (which includes npm)
+-   [.NET SDK](https://dotnet.microsoft.com/download) (Version 6.0 or later recommended)
+-   An **OpenAI API Key**. You can get one from the [OpenAI Platform](https://platform.openai.com/).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Installation & Setup
 
-### `npm run eject`
+#### 1. Backend Server (`server`)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The backend needs your OpenAI API key to function.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1.  Navigate to the `server` directory:
+    ```bash
+    cd server
+    ```
+2.  In the main `server` directory, create a new file named `appsettings.Development.json`. This file will securely store your API key for local development.
+3.  Add your OpenAI API key to `appsettings.Development.json`:
+    ```json
+    {
+      "OpenAI": {
+        "ApiKey": "YOUR_OPENAI_API_KEY_HERE"
+      }
+    }
+    ```
+4.  Restore the .NET packages and run the server:
+    ```bash
+    dotnet restore
+    dotnet run
+    ```
+5.  The backend server will now be running, typically on `http://localhost:5183`.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+#### 2. Frontend Client (`src` folder)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1.  In a **new terminal**, navigate to the project's root directory (where the `src`, `public`, and `package.json` folders are).
+2.  Install the required npm packages:
+    ```bash
+    npm install
+    ```
+3.  Start the React development server:
+    ```bash
+    npm start
+    ```
+4.  The React application will now be running on `http://localhost:3000`.
 
-## Learn More
+### Usage
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1.  Open your web browser and go to `http://localhost:3000`.
+2.  Enter your work notes for the day into the text area.
+3.  Select a report template from the dropdown menu.
+4.  Click the **"Generate"** button.
+5.  The generated stand-up report will appear in the output section below.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🔌 API Endpoints
 
-### Code Splitting
+The backend exposes a RESTful API for the frontend to consume.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Generate Report
+-   **Endpoint**: `POST /api/Report`
+-   **Description**: Takes user notes and a template name, and returns an AI-generated report.
+-   **Request Body**:
+    ```json
+    {
+      "notes": "string",
+      "selectedTemplate": "string"
+    }
+    ```
+-   **Response**:
+    ```json
+    {
+      "report": "The generated report text..."
+    }
+    ```
+You can view and test all available endpoints using the built-in Swagger UI by navigating to `/swagger` on the backend URL (e.g., `http://localhost:5183/swagger`).
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+When you save this in the MA-README.md file, it will automatically be rendered with the proper formatting by services like GitHub or even inside VS Code's preview.
