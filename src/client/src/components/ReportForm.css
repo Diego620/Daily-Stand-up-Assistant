@@ -1,0 +1,180 @@
+﻿.report-form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    box-sizing: border-box;
+    /* ❌ remove min-height */
+}
+
+.dropdown-container {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.dropdown-label {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.template-dropdown {
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    background-color: #f7f7f8;
+    font-size: 14px;
+    color: #333;
+    outline: none;
+    transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.template-dropdown:focus {
+    border-color: #7b86f0;
+    box-shadow: 0 0 4px rgba(123, 134, 240, 0.4);
+}
+
+
+.form-label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.notes-area {
+    width: 100%;
+    height: 300px;
+    padding: 1rem; 
+    border: 2px solid #ddd; 
+    border-radius: 12px; 
+    background-color: #f7f7f8; 
+    box-sizing: border-box;
+    resize: none;
+    overflow: auto;
+    font-size: 14px; 
+    line-height: 1.6; 
+    color: #333; 
+    font-family: Arial, sans-serif; 
+    outline: none; 
+    transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+.notes-area:focus {
+    border-color: #7b86f0; 
+    box-shadow: 0 0 4px rgba(123, 134, 240, 0.4);
+}
+
+.button-row {
+    display: flex;
+    gap: 10px; 
+    margin-top: 1rem;
+}
+
+.generate-button {
+    flex: 1;
+    padding: 8px;
+    background-color: #4b4b4b;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background 0.2s ease-in-out;
+}
+
+.reset-button {
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    transition: background 0.2s ease-in-out;
+}
+
+    .reset-button:hover {
+        background: #f0f0f0;
+    }
+
+.generate-button:hover {
+    background-color: #3a3a3a;
+}
+
+.generate-button:disabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+}
+
+
+
+.how-it-works {
+    margin-top: 20px;
+    background-color: #f5faff; /* light blue background */
+    border: 1px solid #cce4ff; /* light blue border */
+    color: #0056d2; /* blue text */
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+
+
+.how-it-works strong {
+     font-weight: 600;
+     color: #0041a8; /* darker blue for "How it works:" */
+ }
+
+
+/* --- Add these styles for the loading state --- */
+
+/* Style the button when it's in a loading/disabled state */
+.generate-button:disabled {
+    background-color: #868e96; /* A muted gray color from the image */
+    color: #e9ecef;
+    cursor: not-allowed;
+    opacity: 1; /* Override any default opacity for a solid look */
+}
+
+/* Make sure the button content is centered */
+.generate-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px; /* Space between loader/icon and text */
+}
+
+/* The CSS for the spinning loader animation */
+.loader {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #fff;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
