@@ -6,10 +6,22 @@ import ReactMarkdown from 'react-markdown';
 import { FaDownload, FaEdit, FaShareAlt, FaRegCopy } from 'react-icons/fa';
 
 function downloadPDF(report) {
-    const doc = new jsPDF();
-    // Note: jsPDF doesn't render markdown well. This will still download the raw text.
-    // For styled PDFs, a more complex library like html2canvas would be needed.
-    doc.text(report, 10, 10);
+    const doc = new jsPDF({
+        orientation: 'p', // portrait
+        unit: 'mm', // millimeters
+        format: 'a4' // A4 format
+    });
+
+    const margin = 15; // Top, right, bottom, left margin
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const usableWidth = pageWidth - (margin * 2);
+
+    // The key is to pass the text and options object with maxWidth
+    doc.text(report, margin, margin, {
+        maxWidth: usableWidth
+    });
+
     doc.save('daily-standup-report.pdf');
 }
 
