@@ -98,7 +98,7 @@
 
 .copy-confirm {
     font-weight: bold;
-    color: #28a745; /* Green color for success */
+    color: #28a745; 
     animation: fadeOut 2s forwards;
 }
 
@@ -108,12 +108,6 @@
     100% { opacity: 0; }
 }
 
-
-/* --- NEW STYLES ADDED HERE --- */
-
-/* Keep all your existing CSS, and add these new styles at the end */
-
-/* ... (all your previous CSS from .report-output to @keyframes fadeOut) ... */
 
 .report-header {
     display: flex;

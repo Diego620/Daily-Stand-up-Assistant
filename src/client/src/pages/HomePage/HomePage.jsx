@@ -19,9 +19,7 @@ export function HomePage() {
         error,
         handleGenerate,
     } = useReportGenerator();
-
-    // The component is now only responsible for LAYOUT. All the complex
-    // logic is hidden away in our custom hook.
+    
     return (
         <>
             <div className="app-header">

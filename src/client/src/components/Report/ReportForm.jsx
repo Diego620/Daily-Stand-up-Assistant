@@ -2,7 +2,6 @@
 import "./ReportForm.css";
 import { FaMagic, FaUndo } from 'react-icons/fa';
 
-// 1. Receive isLoading prop
 const ReportForm = ({ notes, setNotes, handleGenerate, selectedTemplate, setSelectedTemplate, isLoading }) => {
     const handleReset = () => {
         setNotes("");
