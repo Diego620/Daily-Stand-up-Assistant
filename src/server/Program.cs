@@ -13,7 +13,7 @@ builder.Services.AddControllers();
 // Scoped = one instance per HTTP request
 builder.Services.AddScoped<IReportService, ReportService>();
 
-// Add API endpoint metadata for Swagger (API documentation)
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
