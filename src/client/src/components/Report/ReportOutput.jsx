@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './ReportOutput.css';
 import { jsPDF } from 'jspdf';
-// --- 1. Import ReactMarkdown ---
 import ReactMarkdown from 'react-markdown';
 import { FaDownload, FaEdit, FaShareAlt, FaRegCopy } from 'react-icons/fa';
 
@@ -71,9 +70,6 @@ const ReportOutput = ({ report, selectedTemplate }) => {
                         onChange={(e) => setEditableReport(e.target.value)}
                     />
                 ) : (
-                    // --- 2. This is the key change ---
-                    // Replace the <pre> tag with the ReactMarkdown component
-                    // This will render the markdown correctly and fix the overflow.
                     <div className="output-box markdown-content">
                         <ReactMarkdown>{editableReport}</ReactMarkdown>
                     </div>
