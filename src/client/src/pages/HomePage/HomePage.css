@@ -1,0 +1,42 @@
+/* This centers the content in your existing header */
+.app-header {
+    text-align: center;
+    padding-bottom: 2px; /* Adds some space below the tags */
+}
+
+/* --- START: Add this new class for the icon --- */
+.header-icon {
+    width: 32px;
+    height: 32px;
+    vertical-align: middle; /* Aligns the icon with the text */
+    margin-right: 12px;     /* Adds space between the icon and title */
+}
+/* --- END: Add this new class for the icon --- */
+
+.subtitle {
+    max-width: 550px;
+    margin: 13px auto 18px auto;
+    padding-bottom: 10px;
+    color: #64748b; /* Muted gray for the subtitle text */
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.header-tags {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #eff0f3; /* Light lavender/blue background */
+    padding: 6px 14px;
+    border-radius: 999px; /* This creates the pill shape */
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #374151;
+    border: 1px solid #e0e7ff;
+}

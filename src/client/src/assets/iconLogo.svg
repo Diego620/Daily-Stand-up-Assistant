@@ -1,0 +1,34 @@
+﻿<svg width="32" height="32" viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
+    <!--
+      The viewBox has been enlarged to 150x150 to prevent clipping.
+      The rectangles' positions (x, y) and the rotation point have been
+      adjusted to keep the icon centered inside the new viewBox.
+    -->
+    <rect
+            x="25"
+            y="30"
+            width="100"
+            height="25"
+            rx="5"
+            fill="#7A9DCA"
+            transform="rotate(-40 75 75)"
+    />
+    <rect
+            x="25"
+            y="62"
+            width="100"
+            height="25"
+            rx="5"
+            fill="#F2B366"
+            transform="rotate(-40 75 75)"
+    />
+    <rect
+            x="25"
+            y="94"
+            width="100"
+            height="25"
+            rx="5"
+            fill="#B8B8B8"
+            transform="rotate(-40 75 75)"
+    />
+</svg>

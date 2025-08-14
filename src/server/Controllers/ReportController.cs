@@ -20,14 +20,14 @@ namespace server.Controllers
             _reportService = reportService;
         }
 
-        // Handles POST requests sent to "api/report"
+        // Generate method is going to be used to generate a report based on the provided notes and selected template(request) from the frontend.
         [HttpPost]
         public async Task<IActionResult> Generate([FromBody] GenerateReportRequest request)
         {
-            // Call the service to generate the report asynchronously
+            // report gets passed to the report service to generate the report
             var generatedReport = await _reportService.GenerateReportAsync(request);
+            // wraps the string in an Ok result to return it as a response
 
-            // Return HTTP 200 OK with the generated report data
             return Ok(generatedReport);
         }
     }

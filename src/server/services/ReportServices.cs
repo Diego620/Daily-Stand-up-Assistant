@@ -6,7 +6,10 @@ namespace server.services
     // Implements the IReportService interface to generate reports using Azure OpenAI
     public class ReportService : IReportService
     {
-        private readonly OpenAIClient _openAiClient; // Client for making API calls to Azure OpenAI
+
+        // defining the OpenAI client
+        private readonly OpenAIClient _openAiClient;
+
 
         // Constructor uses dependency injection to provide an OpenAIClient
         public ReportService(OpenAIClient openAiClient)
@@ -14,29 +17,37 @@ namespace server.services
             _openAiClient = openAiClient;
         }
 
-        // Generates a report based on the user's notes and chosen template
+
+        // Method that defines the logic for generating a report based on the provided notes and selected template.
         public async Task<string> GenerateReportAsync(GenerateReportRequest request)
         {
-            // Get the current date in "day month year" format (e.g., 11 August 2025)
+            // getting the current date
             string currentDate = DateTime.Now.ToString("dd MMMM yyyy");
-
-            // Generate the system prompt based on the selected template and current date
+            
+            // ensuring that the prompt takes in the selected template and current date
             string systemPrompt = GetSystemPrompt(request.SelectedTemplate, currentDate);
 
-            // Prepare chat completion request options for Azure OpenAI
+            // defining the ai feature -> chatCompletionsOptions
+
+
             var chatCompletionsOptions = new ChatCompletionsOptions()
             {
                 DeploymentName = "gpt-3.5-turbo", // Azure OpenAI deployment name
                 Messages =
                 {
-                    new ChatRequestSystemMessage(systemPrompt), // System role: instructions for the AI
-                    new ChatRequestUserMessage(request.Notes),  // User role: raw notes from the request
+
+                    // setting the instructions for the AI model based on whatever template is selected
+                    new ChatRequestSystemMessage(systemPrompt),
+                    // prmpting the AI model to generate a report based on the user's notes
+                    new ChatRequestUserMessage(request.Notes),
+
                 },
                 MaxTokens = 1000,  // Limit the output size
                 Temperature = 0.7f // Controls creativity level
             };
 
-            // Call Azure OpenAI to generate the report
+            // sending the request to the OpenAI API and getting the response
+
             var response = await _openAiClient.GetChatCompletionsAsync(chatCompletionsOptions);
 
             // Return the AI's response text

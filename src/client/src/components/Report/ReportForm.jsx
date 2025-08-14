@@ -3,6 +3,8 @@ import "./ReportForm.css";
 import { FaMagic, FaUndo } from 'react-icons/fa';
 
 const ReportForm = ({ notes, setNotes, handleGenerate, selectedTemplate, setSelectedTemplate, isLoading }) => {
+    
+    // resets the notes 
     const handleReset = () => {
         setNotes("");
     };
@@ -23,9 +25,9 @@ const ReportForm = ({ notes, setNotes, handleGenerate, selectedTemplate, setSele
                     <option>Minimal Summary</option>
                 </select>
             </div>
-
+            
             <label className="form-label">Your Daily Notes</label>
-            <textarea
+            <textarea // Textarea for user input notes
                 className="notes-area"
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
@@ -37,11 +39,10 @@ Examples:
 - stuck on API integration, need help from backend team
 - completed code review for John's PR
 - planning to start on payment system today`}
-                readOnly={isLoading} // Make textarea readonly while loading
+                readOnly={isLoading} // Textarea becomes readonly while loading
             />
-
+            
             <div className="button-row">
-                {/* 2. Update the button to be conditional */}
                 <button
                     className="generate-button"
                     onClick={handleGenerate}
@@ -59,7 +60,8 @@ Examples:
                         </>
                     )}
                 </button>
-                <button
+                
+                <button // Reset button to clear notes
                     className="reset-button"
                     onClick={handleReset}
                     disabled={isLoading} // Also disable reset button
@@ -67,7 +69,7 @@ Examples:
                     <FaUndo />
                 </button>
             </div>
-
+            
             <div className="how-it-works">
                 <strong>How it works:</strong> Just write your thoughts naturally!
                 The AI will automatically categorize your notes into
