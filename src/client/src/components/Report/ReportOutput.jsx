@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './ReportOutput.css';
 import { jsPDF } from 'jspdf';
-// --- 1. Import ReactMarkdown ---
 import ReactMarkdown from 'react-markdown';
 import { FaDownload, FaEdit, FaShareAlt, FaRegCopy } from 'react-icons/fa';
 
+// pdf generation function
 function downloadPDF(report) {
     const doc = new jsPDF({
         orientation: 'p', // portrait
@@ -25,16 +25,21 @@ function downloadPDF(report) {
     doc.save('daily-standup-report.pdf');
 }
 
+// Responsive component for displaying the report output
+// It allows users to edit, download, share via email, and copy the report.
+// It also handles the display of the report in markdown format.
 const ReportOutput = ({ report, selectedTemplate }) => {
     const [editableReport, setEditableReport] = useState('');
     const [isEditing, setIsEditing] = useState(false);
     const [copySuccess, setCopySuccess] = useState(false);
 
+    // Effect to set the editable report when the report prop changes
     useEffect(() => {
         setEditableReport(report);
         setIsEditing(false);
     }, [report]);
 
+    // Function to handle email sharing
     const handleEmailShare = () => {
         const subject = encodeURIComponent("Daily Standup Report");
         const body = encodeURIComponent(editableReport);
@@ -42,6 +47,7 @@ const ReportOutput = ({ report, selectedTemplate }) => {
         window.open(mailtoLink, '_blank');
     };
 
+    // Function to handle copying the report to clipboard
     const handleCopy = async () => {
         try {
             await navigator.clipboard.writeText(editableReport);
@@ -51,14 +57,16 @@ const ReportOutput = ({ report, selectedTemplate }) => {
             console.error('Failed to copy: ', err);
         }
     };
-
+    
+    
     return (
+        // Main container for the report output
         <div className="report-output">
             <div className="report-header">
                 <h2>Generated Report</h2>
                 {report && <span className="report-tag">{selectedTemplate}</span>}
             </div>
-
+            
             {!report ? (
                 <div className="output-box placeholder-container">
                     <p className="placeholder">No report generated yet</p>
@@ -71,18 +79,14 @@ const ReportOutput = ({ report, selectedTemplate }) => {
                         onChange={(e) => setEditableReport(e.target.value)}
                     />
                 ) : (
-                    // --- 2. This is the key change ---
-                    // Replace the <pre> tag with the ReactMarkdown component
-                    // This will render the markdown correctly and fix the overflow.
                     <div className="output-box markdown-content">
                         <ReactMarkdown>{editableReport}</ReactMarkdown>
                     </div>
                 )
             )}
-
-            {report && (
+            {report && ( 
                 <div className="icon-buttons">
-                    {isEditing ? (
+                    {isEditing ? ( // If in editing mode, show save and cancel buttons
                         <>
                             <button className="save-btn" onClick={() => setIsEditing(false)}>
                                 Save Changes
@@ -98,6 +102,7 @@ const ReportOutput = ({ report, selectedTemplate }) => {
                             </button>
                         </>
                     ) : (
+                        // Display buttons for downloading, editing, sharing, and copying
                         <>
                             <button className="icon-btn" onClick={() => downloadPDF(editableReport)} title="Download"><FaDownload /></button>
                             <button className="icon-btn" onClick={() => setIsEditing(true)} title="Edit"><FaEdit /></button>

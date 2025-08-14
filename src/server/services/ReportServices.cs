@@ -7,6 +7,7 @@ namespace server.services
 {
     public class ReportService : IReportService
     {
+        // defining the OpenAI client
         private readonly OpenAIClient _openAiClient;
 
         public ReportService(OpenAIClient openAiClient)
@@ -14,23 +15,30 @@ namespace server.services
             _openAiClient = openAiClient;
         }
 
+        // Method that defines the logic for generating a report based on the provided notes and selected template.
         public async Task<string> GenerateReportAsync(GenerateReportRequest request)
         {
+            // getting the current date
             string currentDate = DateTime.Now.ToString("dd MMMM yyyy");
+            
+            // ensuring that the prompt takes in the selected template and current date
             string systemPrompt = GetSystemPrompt(request.SelectedTemplate, currentDate);
 
+            // defining the ai feature -> chatCompletionsOptions
             var chatCompletionsOptions = new ChatCompletionsOptions()
             {
                 DeploymentName = "gpt-3.5-turbo",
                 Messages =
                 {
+                    // setting the instructions for the AI model based on whatever template is selected
                     new ChatRequestSystemMessage(systemPrompt),
+                    // prmpting the AI model to generate a report based on the user's notes
                     new ChatRequestUserMessage(request.Notes),
                 },
                 MaxTokens = 1000,
                 Temperature = 0.7f,
             };
-
+            // sending the request to the OpenAI API and getting the response
             var response = await _openAiClient.GetChatCompletionsAsync(chatCompletionsOptions);
             return response.Value.Choices[0].Message.Content;
         }

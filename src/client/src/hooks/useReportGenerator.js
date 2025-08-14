@@ -9,7 +9,8 @@ export const useReportGenerator = () => {
     const [selectedTemplate, setSelectedTemplate] = useState('Standard Standup');
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
-
+    
+    // This function handles the report generation logic.
     const handleGenerate = async () => {
         if (!notes.trim()) {
             setReport("");
@@ -31,7 +32,7 @@ export const useReportGenerator = () => {
         }
     };
 
-    // The hook returns everything the component needs to function.
+    // Returns everything the component needs to function.
     return {
         notes,
         setNotes,
