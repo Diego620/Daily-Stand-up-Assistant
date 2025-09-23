@@ -12,8 +12,8 @@ import './HomePage.css';
 import { FaRegClock, FaFileAlt } from 'react-icons/fa';
 import { FaWandMagicSparkles } from "react-icons/fa6";
 
-// Importing the logo icon from svg file
-import LogoIcon from '../../assets/iconLogo.svg';
+// Importing the logo icon from svg file - REMOVED
+// import LogoIcon from '../../assets/iconLogo.svg';
 
 // 
 export function HomePage() {
@@ -31,7 +31,8 @@ export function HomePage() {
         <>
             <div className="app-header">
                 <h1>
-                    <img src={LogoIcon} alt="Logo Icon" className="header-icon" />
+                    {/* The img tag has been replaced with the sparkle icon component */}
+                    <FaWandMagicSparkles className="header-icon" />
                     Daily Standup Assistant
                 </h1>
                 <p className="subtitle">
